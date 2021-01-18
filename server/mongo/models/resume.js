@@ -5,7 +5,8 @@ const resume = mongoose.model(
   new mongoose.Schema(
     {
       name: String,
-      description: String
+      description: String,
+      user_id: String,
     }
   )
 )

@@ -11,8 +11,10 @@ const PageInfo = `
 
 const Resume = `
   type Resume {
+    id: ID!
     name: String
     description: String
+    user_id: String
   }
 `
 

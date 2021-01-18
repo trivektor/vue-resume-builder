@@ -20,6 +20,7 @@
     "apollo-link": "^1.2.14",
     "apollo-link-http": "^1.5.17",
     "apollo-server": "^2.19.2",
+    "apollo-server-express": "^2.19.2",
     "auth0-js": "^9.14.0",
     "autoprefixer": "^9.8.6",
     "core-js": "^3.6.5",

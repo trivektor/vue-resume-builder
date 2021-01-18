@@ -1,24 +1,31 @@
 <template>
   <div>
-    <router-link to="/resumes/new">New Resume</router-link>
+    <div class="px-4 py-4">
+      <router-link to="/resumes/new">New Resume</router-link>
+    </div>
   </div>
 </template>
 
 <script>
 import gql from 'graphql-tag';
 
-export default {
-  apollo: {
-    resumes: gql`query {
-      resumes {
-        edges {
-          node {
-            name
-            description
-          }
+const resumesQuery = gql`
+  query ResumesQuery {
+    resumes {
+      edges {
+        node {
+          id
+          name
+          description
         }
       }
-    }`
+    }
   }
+`
+
+export default {
+  apollo: {
+    resumes: resumesQuery,
+  },
 }
 </script>

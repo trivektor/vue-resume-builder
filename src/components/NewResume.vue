@@ -27,6 +27,8 @@ const createResumeMutation = gql`
     ) {
       name
       description
+      id
+      user_id
     }
   }
 `

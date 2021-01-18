@@ -1,18 +1,10 @@
 import {Resume} from '../mongo/models'
-import isTokenValid from '../validate'
 
-const createResume = async (root, {input}, context) => {
-  const {token} = context
-
-  const {error} = await isTokenValid(token)
-
-  if (error) {
-    throw new Error(error)
-  }
-
+const createResume = async (root, {input}, {userId}) => {
   const resume = new Resume({
     name: input.name,
     description: input.description,
+    user_id: userId,
   })
 
   await resume.save()
