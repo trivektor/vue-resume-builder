@@ -1,7 +1,7 @@
 import {Resume} from '../mongo/models'
 
 const resumes = async (_, __, context) => {
-  const allResumes = await Resume.find()
+  const allResumes = await Resume.find({user_id: context.userId})
 
   return {
     edges: allResumes.map((resume) => ({

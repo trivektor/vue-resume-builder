@@ -9,7 +9,7 @@
       <textarea v-model="description" class="block border-b-2 border-solid rounded min-w-full" />
     </div>
     <div class="mt-4">
-      <button type="submit" class="bg-blue-600 px-2 py-1 text-white">Create</button>
+      <button type="submit" class="bg-blue-600 px-2 py-1 text-white rounded">Create</button>
     </div>
   </form>
 </template>
