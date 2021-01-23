@@ -1,6 +1,9 @@
 <template>
   <div class="border-b-2 mt-4 flex">
-    <div class="flex-1">{{resume.name}}</div>
+    <div class="flex-1">
+      <strong class="block text-pink-500">{{resume.name}}</strong>
+      <div class="text-gray-300">{{new Date(+resume.created_at)}}</div>
+    </div>
     <aside>
       <button 
         v-on:click="deleteResume"

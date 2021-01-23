@@ -29,6 +29,8 @@ const resumesQuery = gql`
           id
           name
           description
+          created_at
+          updated_at
         }
       }
     }
@@ -43,6 +45,7 @@ export default {
     resumes: {
       query: resumesQuery,
       deep: false,
+      fetchPolicy: "network-only",
       result({data}) {
         this.resumes = map(data?.resumes?.edges, 'node')
       },

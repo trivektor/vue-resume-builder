@@ -49,7 +49,7 @@ router.beforeEach( (to,from,next)=>{
   let routerAuthCheck = false;  
   // Verify all the proper access variables are present for proper authorization
   if( localStorage.getItem('access_token') && localStorage.getItem('id_token') && localStorage.getItem('expires_at') ){
-    console.log('found local storage tokens');
+    //console.log('found local storage tokens');
     // Check whether the current time is past the Access Token's expiry time
     let expiresAt = JSON.parse(localStorage.getItem('expires_at'));
     // set localAuthTokenCheck true if unexpired / false if expired

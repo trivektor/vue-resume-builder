@@ -15,6 +15,8 @@ const Resume = `
     name: String
     description: String
     user_id: String
+    created_at: String
+    updated_at: String
   }
 `
 

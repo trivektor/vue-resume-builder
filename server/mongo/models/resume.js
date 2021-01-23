@@ -7,6 +7,12 @@ const resume = mongoose.model(
       name: String,
       description: String,
       user_id: String,
+    },
+    {
+      timestamps: {
+        createdAt: 'created_at',
+        updatedAt: 'updated_at',
+      },
     }
   )
 )
