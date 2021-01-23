@@ -2,6 +2,7 @@ import Vue from 'vue'
 import VueApollo from 'vue-apollo'
 import {ApolloClient} from 'apollo-client'
 import {createHttpLink} from 'apollo-link-http'
+import {ApolloLink} from 'apollo-link'
 import {InMemoryCache} from 'apollo-cache-inmemory'
 
 import App from './App.vue'
@@ -13,18 +14,26 @@ import './assets/styles/index.css'
 const httpLink = createHttpLink({
   // You should use an absolute URL here
   uri: 'http://localhost:4000/graphql',
-  headers: {
-    'Authorization': `Bearer ${localStorage.getItem('id_token')}`,
-  },
 })
 
-// Cache implementation
-const cache = new InMemoryCache()
+const authMiddleware = new ApolloLink((operation, forward) => {
+  // add the authorization to the headers
+  operation.setContext({
+    headers: {
+      authorization: `Bearer ${localStorage.getItem('id_token')}`,
+    },
+  })
+  
+  return forward(operation)
+})
 
 // Create the apollo client
 const apolloClient = new ApolloClient({
-  link: httpLink,
-  cache,
+  link: ApolloLink.from([
+    authMiddleware,
+    httpLink,
+  ]),
+  cache: new InMemoryCache(),
 })
 
 const apolloProvider = new VueApollo({
