@@ -58,6 +58,7 @@ const Mutation = `
   
   type Mutation {
     createResume(input: ResumeInput): Resume
+    deleteResume(resumeId: ID!): Boolean
   }
 `;
 

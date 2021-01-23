@@ -9,7 +9,8 @@
     <resume-list-item
       v-for="resume in resumes" 
       v-bind:resume="resume"
-      v-bind:key="resume.id">
+      v-bind:key="resume.id"
+      v-on:resume-deleted="resumeDeleted">
     </resume-list-item>    
   </div>
 </template>
@@ -45,6 +46,11 @@ export default {
       result({data}) {
         this.resumes = map(data?.resumes?.edges, 'node')
       },
+    },
+  },
+  methods: {
+    resumeDeleted() {
+      this.$apollo.queries.resumes.refetch()
     },
   },
 }

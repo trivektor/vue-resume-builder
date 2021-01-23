@@ -10,12 +10,29 @@
 </template>
 
 <script>
+import gql from 'graphql-tag'
+
+const deleteResumeMutation = gql`
+  mutation deleteResumeMutation($resumeId: ID!) {
+    deleteResume(resumeId: $resumeId)
+  }
+`
+
 export default {
   props: ['resume'],
   methods: {
-    deleteResume() {
-      console.log('deleting', this.resume)
-    }
-  }
+    async deleteResume() {
+      if (!confirm('Are you sure you want to delete this resume?')) return;
+      
+      await this.$apollo.mutate({
+        mutation: deleteResumeMutation,
+        variables: {
+          resumeId: this.resume.id,
+        },
+      })
+
+      this.$emit('resume-deleted')
+    },
+  },
 }
 </script>
