@@ -2,7 +2,7 @@ import Vue from "vue";
 import Router from "vue-router";
 import Store from "./store";
 
-import {Resumes, NewResume} from '@/views/resumes'
+import {Resumes, NewResume, ResumeEdit} from '@/views/resumes'
 import Login from "@/views/Login";
 import Auth0Callback from "@/views/Auth0Callback";
 
@@ -12,6 +12,12 @@ const router = new Router({
   mode: "history",
   base: process.env.BASE_URL,
   routes: [
+    {
+      path: "/",
+      name: "root",
+      component: Resumes,
+      meta: { requiresAuth: true }
+    },
     {
       path: '/auth0callback',
       name: 'auth0callback',
@@ -30,9 +36,14 @@ const router = new Router({
       meta: {requiresAuth: true},
     },
     {
+      path: '/resumes/:resumeId/edit',
+      name: 'resumeEdit',
+      component: ResumeEdit,
+    },
+    {
       path: "/login",
       name: "login",
-      component: Login
+      component: Login,
     },
   ],
 });

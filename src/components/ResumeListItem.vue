@@ -5,6 +5,10 @@
       <div class="text-gray-300">{{new Date(+resume.created_at)}}</div>
     </div>
     <aside>
+      <router-link v-bind:to="{name: 'resumeEdit', params: {resumeId: resume.id}}">
+        <button
+          class="bg-blue-500 text-white px-2 align-text-bottom rounded mr-2">Update</button>
+      </router-link>
       <button 
         v-on:click="deleteResume"
         class="bg-red-500 text-white px-2 align-text-bottom rounded">Delete</button>

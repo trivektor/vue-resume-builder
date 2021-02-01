@@ -49,15 +49,18 @@ const ResumeInput = `
   }
 `
 
+const Query = `
+  type Query {
+    resumes: ResumeConnection
+    resume(resumeId: ID!): Resume
+  }
+`
+
 const MutationInputs = `
   ${ResumeInput}
 `
 
 const Mutation = `
-  type Query {
-    resumes: ResumeConnection
-  }
-  
   type Mutation {
     createResume(input: ResumeInput): Resume
     deleteResume(resumeId: ID!): Boolean
@@ -69,6 +72,7 @@ const typeDefs = gql`
   ${PageInfo}
   ${Edges}
   ${Connections}
+  ${Query}
   ${MutationInputs}
   ${Mutation}
 `
